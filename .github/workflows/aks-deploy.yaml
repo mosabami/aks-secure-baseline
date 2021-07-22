@@ -46,6 +46,7 @@ env:
   K8S_RBAC_AAD_PROFILE_TENANTID: '449fbe1d-9c99-4509-9014-4fd5cf25b014'          # The tenant to integrate AKS-managed Azure AD
   K8S_RBAC_AAD_PROFILE_ADMIN_GROUP_OBJECTID: '94201b24-3021-47f0-898b-7c6e76c0382f' # The Azure AD group object ID that has admin access to the AKS cluster
   K8S_RBAC_AAD_A0008_READER_GROUP_OBJECTID: '580e0cfe-6c18-486b-a0ed-b8acf63fbfbd'  # The Azure AD group object ID that has readonly access to the a0008 namespace in the AKS cluster
+
   CLUSTER_AUTHORIZED_IP_RANGES: '[]'                                                # By default, this deployment will allow unrestricted access to your cluster's API Server. You should limit access to the API Server to a set of well-known IP addresses (i.,e. your hub firewall IP, bastion subnet, build agents, or any other networks you'll administer the cluster from), and can do so by adding a CLUSTER_AUTHORIZED_IP_RANGES="['managementRange1', 'managementRange2', 'AzureFirewallIP/32']"" parameter.
 jobs:
   deploy:

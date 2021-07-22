@@ -136,7 +136,7 @@
 
         "clusterControlPlaneIdentityName": "[concat('mi-', variables('clusterName'), '-controlplane')]",
 
-        "keyVaultName": "[concat('kv-', variables('clusterName'))]",
+        "keyVaultName": "[concat('kvvvtt-', variables('clusterName'))]",
 
         "policyResourceIdAKSLinuxRestrictive": "/providers/Microsoft.Authorization/policySetDefinitions/42b8ef37-b724-4e24-bbc8-7a7708edfe00",
         "policyResourceIdEnforceHttpsIngress": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",

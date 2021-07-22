@@ -24,9 +24,10 @@ Finally, this implementation uses the [ASP.NET Core Docker sample web app](https
 
 #### Azure platform
 
-- AKS v1.20
+- AKS v1.21
   - System and User [node pool separation](https://docs.microsoft.com/azure/aks/use-system-pools)
   - [AKS-managed Azure AD](https://docs.microsoft.com/azure/aks/managed-aad)
+  - Azure AD-backed Kubernetes RBAC (_local user accounts disabled_)
   - Managed Identities
   - Azure CNI
   - [Azure Monitor for containers](https://docs.microsoft.com/azure/azure-monitor/insights/container-insights-overview)
@@ -39,8 +40,8 @@ Finally, this implementation uses the [ASP.NET Core Docker sample web app](https
 
 - [Flux GitOps Operator](https://fluxcd.io)
 - [Traefik Ingress Controller](https://doc.traefik.io/traefik/v2.4/routing/providers/kubernetes-ingress/)
-- [Azure AD Pod Identity](https://github.com/Azure/aad-pod-identity)
-- [Azure KeyVault Secret Store CSI Provider](https://github.com/Azure/secrets-store-csi-driver-provider-azure)
+- [Azure AD Pod Identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity)
+- [Secrets Store CSI Driver for Kubernetes](https://docs.microsoft.com/azure/aks/csi-secrets-store-driver)
 - [Kured](https://docs.microsoft.com/azure/aks/node-updates-kured)
 
 ![Network diagram depicting a hub-spoke network with two peered VNets, each with three subnets and main Azure resources.](https://docs.microsoft.com/azure/architecture/reference-architectures/containers/aks/images/secure-baseline-architecture.svg)
@@ -104,7 +105,7 @@ While this reference implementation tends to avoid _preview_ features of AKS to 
 
 Consider trying out and providing feedback on the following:
 
-- [Azure RBAC for Kubernetes Authentication](https://docs.microsoft.com/azure/aks/manage-azure-rbac) - An extension of the Azure AD integration already in this reference implementation. Allowing you to bind Kubernetes authentication to Azure RBAC role assignments.
+- [Automatic Node Upgrade](https://github.com/Azure/AKS/issues/1486)
 - [Host-based encryption](https://docs.microsoft.com/azure/aks/enable-host-encryption) - Leverages added data encryption on your VMs' temp and OS disks.
 - [Generation 2 VM support](https://docs.microsoft.com/azure/aks/cluster-configuration#generation-2-virtual-machines-preview) - Increased memory options, Intel SGX support, and UEFI-based boot architectures.
 - [Auto Upgrade Profile support](https://github.com/Azure/AKS/issues/1303)
@@ -112,22 +113,27 @@ Consider trying out and providing feedback on the following:
 - [GitOps as an add-on](https://github.com/Azure/AKS/issues/1967)
 - [Azure AD Pod Identity as an add-on](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity)
 
+## Related Reference Implementations
+
+The AKS Baseline was used as the foundation for the following additional reference implementations. These build on the learnins of the AKS Baseline and applies a specific lens to the cluster to align a specific topology, requirement, and/or workload type.
+
+- [AKS Baseline for Multi-Region Clusters](https://github.com/mspnp/aks-baseline-multi-region)
+- [AKS Baseline for Regulated Workloads](https://github.com/mspnp/aks-baseline-regulated)
+- [AKS Baseline for Microservices](https://github.com/mspnp/aks-fabrikam-dronedelivery)
+- [Azure Landing Zones, Enterprise-Scale Reference Implemenation using Terraform](https://github.com/Azure/caf-terraform-landingzones-starter/tree/starter/enterprise_scale/construction_sets/aks/online/aks_secure_baseline)
+
 ## Advanced topics
 
 This reference implementation intentionally does not cover more advanced scenarios. For example topics like the following are not addressed:
 
 - Cluster lifecycle management with regard to SDLC and GitOps
 - Workload SDLC integration (including concepts like [Bridge to Kubernetes](https://docs.microsoft.com/visualstudio/containers/bridge-to-kubernetes?view=vs-2019), advanced deployment techniques, etc)
-- Mapping decisions to [CIS benchmark controls](https://www.cisecurity.org/benchmark/kubernetes/)
 - Container security
-- Multi-region clusters
-- [Advanced regulatory compliance](https://github.com/Azure/sg-aks-workshop) (FinServ)
 - Multiple (related or unrelated) workloads owned by the same team
 - Multiple workloads owned by disparate teams (AKS as a shared platform in your organization)
 - Cluster-contained state (PVC, etc)
 - Windows node pools
 - Scale-to-zero node pools and event-based scaling (KEDA)
-- [Private Kubernetes API Server](https://docs.microsoft.com/azure/aks/private-clusters)
 - [Terraform](https://docs.microsoft.com/azure/developer/terraform/create-k8s-cluster-with-tf-and-aks)
 - [Bedrock](https://github.com/microsoft/bedrock)
 - [dapr](https://github.com/dapr/dapr)
